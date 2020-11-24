@@ -1,0 +1,43 @@
+#character-sheet {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#character-info {
+  .section {
+    min-width: 220px;
+    max-height: 300px;
+    border: 1px solid brown;
+    padding: 5px;
+  }
+
+  .header {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-bottom: 5px;
+  }
+
+  .traits {
+    div {
+      height: 100%;
+      width: 100%;
+      vertical-align: bottom;
+      text-align: center;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .field-value {
+      border-bottom: 1px solid gray;
+      flex-grow: 1;
+    }
+  }
+
+  .image {
+    max-height: 220px;
+    max-width: 25%;
+  }
+}

@@ -1,0 +1,49 @@
+<div id="character-sheet" fxLayout="column" fxLayoutAlign="center center" *ngIf="character">
+  <div id="character-info" fxLayout="row" fxLayoutGap="3px">
+    <div class="section traits" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center center" fxFlex="25%">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Name</p>
+        <p class="field-value">{{character.name}}</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Player</p>
+        <p class="field-value">{{character.player}}</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Occupation</p>
+        <p class="field-value">{{character.occupation}}<p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="center center" fxFlex="40%" fxLayoutGap="5px">
+          <p class="field-label">Age</p>
+          <p class="field-value">{{character.age}}</p>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="60%" fxLayoutGap="5px">
+          <p class="field-label">Sex</p>
+          <p class="field-value">{{character.sex}}</p>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Archetype</p>
+        <p class="field-value">{{character.archetype}}</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Residence</p>
+        <p class="field-value">{{character.residence}}</p>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <p class="field-label">Birthplace</p>
+        <p class="field-value">{{character.birthplace}}</p>
+      </div>
+    </div>
+
+    <div class="section" fxFlex="50%" fxLayout="column">
+      <div class="header">Characteristics</div>
+      <character-stats fxFlex="grow"></character-stats>
+    </div>
+
+    <div class="section image" fxFlex="25%">
+      <dnd-image-input placeholder="assets/img/characterImagePlaceholder.png" [onUpload]="onImageUpload"></dnd-image-input>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+div {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.container {
+  border: 1px solid black;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.value-box {
+  padding: 2px;
+  height: 100%;
+}
+
+.success-wrapper {
+  font-size: calc(1em / 2);
+  height: 100%;
+  border-left: 1px solid black;
+}
+
+.hard-success {
+  border-bottom: 1px solid black;
+}
