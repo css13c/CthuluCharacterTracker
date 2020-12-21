@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CdkDragDrop, DragDrop } from '@angular/cdk/drag-drop';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'dnd-image-input',
@@ -8,12 +8,12 @@ import { CdkDragDrop, DragDrop } from '@angular/cdk/drag-drop';
 })
 export class DndImageInputComponent implements OnInit {
   @Input() placeholder: string | undefined;
-  @Input() image: string | undefined;
+  @Input() image: string | SafeUrl | undefined;
   @Input() text: string | undefined;
   @Input() style: any;
   @Input() onUpload: Function | undefined;
 
-  constructor() {}
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
 
@@ -21,10 +21,34 @@ export class DndImageInputComponent implements OnInit {
     return this.text ? '80%' : '100%';
   }
 
-  onDrop(files: FileList): void {
-    console.log('Got files: ' + JSON.stringify(files));
+  onChange(event: any): void {
+    const file = event.target.files[0];
+    this.setImageFromFile(file);
+
     if (this.onUpload) {
-      this.onUpload(files);
+      this.onUpload(file);
     }
+  }
+
+  onDrop(files: Array<File>): void {
+    const file = files[0];
+    this.setImageFromFile(file);
+
+    if (this.onUpload && file) {
+      this.onUpload(file);
+    }
+  }
+
+  private setImageFromFile(file: File): void {
+    const reader = new FileReader();
+    const sanitizer = this.sanitizer;
+    const self = this;
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+      const result = reader.result;
+      if (result as string) {
+        self.image = sanitizer.bypassSecurityTrustUrl(result as string);
+      }
+    };
   }
 }

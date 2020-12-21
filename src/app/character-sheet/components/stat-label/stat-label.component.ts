@@ -1,8 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  InvestigatorSkill,
-  InvestigatorStat,
-} from 'src/app/character-sheet/types/character';
 
 @Component({
   selector: 'stat-label',

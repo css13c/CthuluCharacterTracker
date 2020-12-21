@@ -1,13 +1,16 @@
 #character-sheet {
+  width: 80%;
   margin-left: 10%;
   margin-right: 10%;
+  align-self: center;
 }
 
 #character-info {
+  border: 1px solid brown;
+
   .section {
     min-width: 220px;
     max-height: 300px;
-    border: 1px solid brown;
     padding: 5px;
   }
 
@@ -39,5 +42,13 @@
   .image {
     max-height: 220px;
     max-width: 25%;
+  }
+}
+
+#status-values {
+  width: 100%;
+
+  div {
+    height: 100%;
   }
 }

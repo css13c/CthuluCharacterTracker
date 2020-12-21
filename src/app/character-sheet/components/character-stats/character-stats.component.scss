@@ -1,6 +1,8 @@
 .container {
   width: 100%;
+  min-width: 360px;
   height: 100%;
+  display: grid;
 
   .stat-row {
     width: 8.5em;
@@ -17,13 +19,15 @@
 
   .move-text {
     width: 30%;
+    text-align: center;
   }
 
   .move-value {
     border: 1px solid black;
     border-radius: 3px;
-    padding: 2px;
+    padding: 10px 2px;
     width: 70%;
+    height: 72%;
     font-size: xx-large;
     font-weight: bold;
   }

@@ -1,0 +1,78 @@
+.container {
+  label {
+    text-align: center;
+    font-size: 2rem;
+    padding: 5px;
+  }
+
+  .value {
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  button {
+    max-width: 50%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0px;
+
+    .icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  .add {
+    background-color: lightgreen;
+  }
+
+  .remove {
+    background-color: lightcoral;
+  }
+
+  .not-stacked {
+    label {
+      min-width: 40px;
+    }
+
+    .add {
+      border-left: 1px solid black;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .remove {
+      border-right: 1px solid black;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+
+  .stacked {
+    min-width: 80px;
+    min-height: 60px;
+
+    div {
+      height: 100%;
+      min-height: 60px;
+      border-left: 2px solid black;
+    }
+
+    button {
+      line-height: inherit;
+      min-width: 100%;
+    }
+
+    .add {
+      border-bottom: 1px solid black;
+      border-top-right-radius: 5px;
+    }
+
+    .remove {
+      border-bottom-right-radius: 5px;
+    }
+
+    label {
+      min-width: min-content;
+    }
+  }
+}

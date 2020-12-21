@@ -1,23 +1,31 @@
-<div class="container" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" *ngIf="statBlock">
-  <div class="stat-row" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center start" fxFlex="33% grow">
-    <stat-label *ngIf="statBlock.strength" name="STR" [value]="statBlock.strength" fxFlexOrder="1" fxFlex="grow"></stat-label>
-    <stat-label *ngIf="statBlock.constitution" name="CON" [value]="statBlock.constitution" fxFlexOrder="4" fxFlex="grow"></stat-label>
-    <stat-label *ngIf="statBlock.size" name="SIZ" [value]="statBlock.size" fxFlexOrder="7" fxFlex="grow"></stat-label>
-  </div>
-  <div class="stat-row" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center start" fxFlex="33% grow">
-    <stat-label *ngIf="statBlock.dexterity" name="DEX" [value]="statBlock.dexterity" fxFlexOrder="2" fxFlex="grow"></stat-label>
-    <stat-label *ngIf="statBlock.appearance" name="APP" [value]="statBlock.appearance" fxFlexOrder="5" fxFlex="grow"></stat-label>
-    <stat-label *ngIf="statBlock.education" name="EDU" [value]="statBlock.education" fxFlexOrder="8" fxFlex="grow"></stat-label>
-  </div>
-  <div class="stat-row" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center start" fxFlex="33% grow">
-    <stat-label *ngIf="statBlock.intelligence" name="INT" [value]="statBlock.intelligence" fxFlexOrder="3" fxFlex="grow"></stat-label>
-    <stat-label *ngIf="statBlock.power" name="POW" [value]="statBlock.power" fxFlexOrder="6" fxFlex="grow"></stat-label>
-    <div *ngIf="getMoveRate() !== -1" class="move-rate" fxFlexOrder="9" fxLayout="row" fxLayoutGap="3px" fxFlex="grow">
-      <div class="move-text">Move Rate</div>
-      <div class="move-value" fxLayout="row" fxLayoutAlign="center center">
-        <span>{{getMoveRate()}}</span>
-      </div>
+<div class="container"
+  *ngIf="statBlock"
+  gdAreas="str dex int | con app pow | siz edu mov"
+  gdGap="3px"
+  gdRows="auto auto auto"
+>
+  <stat-label *ngIf="statBlock.strength" name="STR" [value]="statBlock.strength" gdArea="str"></stat-label>
+  <stat-label *ngIf="statBlock.dexterity" name="DEX" [value]="statBlock.dexterity" gdArea="dex"></stat-label>
+  <stat-label *ngIf="statBlock.intelligence" name="INT" [value]="statBlock.intelligence" gdArea="int"></stat-label>
+  <stat-label *ngIf="statBlock.constitution" name="CON" [value]="statBlock.constitution" gdArea="con"></stat-label>
+  <stat-label *ngIf="statBlock.appearance" name="APP" [value]="statBlock.appearance" gdArea="app"></stat-label>
+  <stat-label *ngIf="statBlock.power" name="POW" [value]="statBlock.power" gdArea="pow"></stat-label>
+  <stat-label *ngIf="statBlock.size" name="SIZ" [value]="statBlock.size" gdArea="siz"></stat-label>
+  <stat-label *ngIf="statBlock.education" name="EDU" [value]="statBlock.education" gdArea="edu"></stat-label>
+
+  <div *ngIf="getMoveRate() !== -1" class="move-rate" gdArea="mov" fxFlexOrder="9" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="3px">
+    <div class="move-text" fxFlex="30%">Move Rate</div>
+    <div class="move-value" fxLayout="row" fxLayoutAlign="center center" fxFlex="60%">
+      <span>{{getMoveRate()}}</span>
     </div>
+    <!-- <div fxLayout="column" fxLayoutAlign="center center" fxFlex="10%">
+      <mat-checkbox> +1</mat-checkbox>
+      <mat-checkbox> -1</mat-checkbox>
+    </div> -->
   </div>
+  <!-- </div>
+  <div class="stat-row" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center start" fxFlex="33% grow"> -->
+  <!-- </div>
+  <div class="stat-row" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center start" fxFlex="33% grow"> -->
 </div>
 <div *ngIf="!statBlock">Loading...</div>

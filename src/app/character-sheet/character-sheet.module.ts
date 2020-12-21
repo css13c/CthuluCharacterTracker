@@ -8,6 +8,11 @@ import { CharacterSheetComponent } from './character-sheet.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GlobalModule } from '../global/global.module';
+import { NumberStatusComponent } from './components/number-status/number-status.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -15,6 +20,7 @@ import { GlobalModule } from '../global/global.module';
     CharacterStatsComponent,
     StatBoxComponent,
     StatLabelComponent,
+    NumberStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -22,6 +28,10 @@ import { GlobalModule } from '../global/global.module';
     CharacterSheetRoutingModule,
     ReactiveFormsModule,
     GlobalModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatCheckboxModule,
   ],
   exports: [CharacterSheetComponent, CharacterStatsComponent],
 })

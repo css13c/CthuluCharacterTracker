@@ -1,9 +1,9 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center">
   <div class="value-box" fxFlex="50" fxLayout="row" fxLayoutAlign="center center">
-    <span>{{value}}</span>
+    <span matTooltip="Normal Success" matTooltipPosition="above" matTooltipShowDelay="1000">{{value}}</span>
   </div>
   <div class="success-wrapper" fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
-    <div class="hard-success" fxFlex="50" fxFill>{{getHardSuccess()}}</div>
-    <div fxFlex="50" fxFill>{{getExtremeSuccess()}}</div>
+    <div class="hard-success" fxFlex="50" fxFill matTooltip="Hard Success" matTooltipPosition="above" matTooltipShowDelay="1000">{{getHardSuccess()}}</div>
+    <div fxFlex="50" fxFill matTooltip="Extreme Success" matTooltipShowDelay="1000">{{getExtremeSuccess()}}</div>
   </div>
 </div>

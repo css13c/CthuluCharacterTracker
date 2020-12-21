@@ -1,5 +1,5 @@
 <div id="character-sheet" fxLayout="column" fxLayoutAlign="center center" *ngIf="character">
-  <div id="character-info" fxLayout="row" fxLayoutGap="3px">
+  <section id="character-info" fxLayout="row" fxLayoutGap="3px">
     <div class="section traits" fxLayout="column" fxLayoutGap="3px" fxLayoutAlign="center center" fxFlex="25%">
       <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
         <p class="field-label">Name</p>
@@ -45,5 +45,25 @@
     <div class="section image" fxFlex="25%">
       <dnd-image-input placeholder="assets/img/characterImagePlaceholder.png" [onUpload]="onImageUpload"></dnd-image-input>
     </div>
-  </div>
+  </section>
+
+  <section class="status-values" fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="center space-between">
+    <div class="hp" fxLayout="column" fxLayoutAlign="center center">
+      <span>Hit Points</span>
+      <number-status name="health" [(value)]="character.currentHp" [stackedButtons]="true" altZero="Dying" [altZeroCondition]="character.majorWound" [maxValue]="character.maxHp"></number-status>
+      <mat-checkbox [checked]="character.majorWound" (change)="character.majorWound = $event.checked">Major Wound</mat-checkbox>
+    </div>
+    <div class="sanity" fxLayout="column" fxLayoutAlign="center center">
+      <span>Sanity</span>
+      <number-status [(value)]="character.currentSanity" [stackedButtons]="true" altZero="Insane" [maxValue]="character.maxSanity"></number-status>
+    </div>
+    <div class="luck" fxLayout="column" fxLayoutAlign="center center">
+      <span>Luck</span>
+      <number-status [(value)]="character.luck" [stackedButtons]="true" [maxValue]="99"></number-status>
+    </div>
+    <div class="magic-points" fxLayout="column" fxLayoutAlign="center center">
+      <span>Magic Points</span>
+      <number-status [(value)]="character.currentMp" [stackedButtons]="true" [maxValue]="character.maxMp"></number-status>
+    </div>
+  </section>
 </div>

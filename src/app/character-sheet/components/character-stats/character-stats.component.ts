@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InvestigatorStatBlock } from '../../types/character';
-import { MockCharacter } from '../../types/mock-data/mock-character';
+import { InvestigatorStatBlock } from '../../shared/character';
+import { MockCharacter } from '../../shared/mock-data/mock-character';
 
 @Component({
   selector: 'character-stats',
@@ -14,7 +14,7 @@ export class CharacterStatsComponent implements OnInit {
   age: number | undefined = undefined;
 
   constructor() {
-    this.statBlock = MockCharacter.characteristics;
+    this.statBlock = MockCharacter.stats;
     this.age = MockCharacter.age;
   }
 

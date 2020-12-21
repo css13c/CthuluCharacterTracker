@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="stacked value" fxLayout="row" fxLayoutAlign="center center" *ngIf="stackedButtons">
+    <input type="number" [value]="value" hidden #numberRef>
+    <label for="numberRef" fxFlex="60%" *ngIf="value != 0 || !altZero || !altZeroCondition">{{value}}</label>
+    <label for="numberRef" fxFlex="60%" *ngIf="value == 0 && altZero && altZeroCondition">{{altZero}}</label>
+    <div fxLayout="column" fxFlex="40%">
+      <button mat-icon-button (click)="updateValue(true)" fxFlex="50%" class="add" ng-attr-matTooltip="includeTooltips || Increase" matTooltipPosition="above" matTooltipShowDelay="1000">
+        <mat-icon class="icon">add</mat-icon>
+      </button>
+      <button mat-icon-button (click)="updateValue(false)" fxFlex="50%" class="remove" ng-attr-matTooltip="includeTooltips || Decrease" matTooltipShowDelay="1000">
+        <mat-icon class="icon">remove</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="not-stacked value" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" *ngIf="!stackedButtons">
+    <button mat-icon-button (click)="updateValue(false)" class="remove" [matTooltip]="includeTooltips ? 'Decrease' : ''" matTooltipShowDelay="1000">
+      <mat-icon class="icon">remove</mat-icon>
+    </button>
+    <input type="number" [value]="value" hidden #numberRef>
+    <label for="numberRef">{{value}}</label>
+    <button mat-icon-button (click)="updateValue(true)" class="add" [matTooltip]="includeTooltips ? 'Increase' : ''" matTooltipShowDelay="1000">
+      <mat-icon class="icon">add</mat-icon>
+    </button>
+  </div>
+</div>

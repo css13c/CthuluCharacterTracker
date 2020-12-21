@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
-import { CthuluInvestigator } from './types/character';
-import { MockCharacter } from './types/mock-data/mock-character';
+import { FormBuilder } from '@angular/forms';
+import { CthuluInvestigator } from './shared/character';
+import { MockCharacter } from './shared/mock-data/mock-character';
 
 @Component({
   selector: 'character-sheet',
@@ -18,6 +18,6 @@ export class CharacterSheetComponent implements OnInit {
   ngOnInit(): void {}
 
   onImageUpload(file: File): void {
-    console.log('AHHHHH');
+    console.log(`New image uploaded: ${file.name}`);
   }
 }

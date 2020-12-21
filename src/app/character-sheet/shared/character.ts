@@ -4,10 +4,19 @@ export interface CthuluInvestigator {
   occupation: string;
   age: number;
   sex: InvestigatorSex;
-  characteristics: InvestigatorStatBlock | undefined;
+  stats: InvestigatorStatBlock | undefined;
   archetype: string;
   birthplace: string;
   residence: string;
+  maxHp: number;
+  currentHp: number;
+  majorWound: boolean;
+  maxSanity: number;
+  currentSanity: number;
+  luck: number;
+  maxMp: number;
+  currentMp: number;
+  skills: Array<InvestigatorSkill>;
 }
 
 export interface InvestigatorStatBlock {

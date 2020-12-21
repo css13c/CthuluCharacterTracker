@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  min-width: 120px;
 }
 
 .box {
@@ -9,4 +10,5 @@
 .name {
   max-width: 30%;
   font-size: 1em;
+  text-align: center;
 }

@@ -1,4 +1,5 @@
 import { CthuluInvestigator, InvestigatorSex } from '../character';
+import { getDefaultCoCSkills } from '../defaultSkills';
 
 export const MockCharacter: CthuluInvestigator = {
   player: 'Connor',
@@ -9,7 +10,7 @@ export const MockCharacter: CthuluInvestigator = {
   archetype: 'Shooter man',
   birthplace: 'Tejas',
   residence: 'Test Res',
-  characteristics: {
+  stats: {
     strength: 75,
     dexterity: 94,
     intelligence: 70,
@@ -19,4 +20,13 @@ export const MockCharacter: CthuluInvestigator = {
     size: 65,
     education: 55,
   },
+  maxHp: 26,
+  currentHp: 23,
+  majorWound: true,
+  maxSanity: 99,
+  currentSanity: 70,
+  maxMp: 14,
+  currentMp: 14,
+  luck: 65,
+  skills: getDefaultCoCSkills(94, 55),
 };

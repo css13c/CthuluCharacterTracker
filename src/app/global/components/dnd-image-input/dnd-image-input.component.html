@@ -1,6 +1,7 @@
 <div class="dropzone" [style]="style">
-  <input type="file" #fileDropRef fileDropUpload dragHoverColor="gray" (fileDropped)="onDrop($event)" (change)="onDrop($event.target)"/>
-  <img *ngIf="image || placeholder" [src]="image || placeholder" [style.height]="getImageSize()"/>
+  <input type="file" #fileDropRef fileDrop (fileDropped)="onDrop($event)" (change)="onChange($event)"/>
+  <img *ngIf="!image && placeholder" [src]="placeholder" [style.height]="getImageSize()"/>
+  <img *ngIf="image" [src]="image" [style.height]="getImageSize()"/>
   <h3 *ngIf="text">{{text}}</h3>
   <label for="fileDropRef"></label>
 </div>

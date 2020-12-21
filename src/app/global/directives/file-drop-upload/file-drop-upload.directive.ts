@@ -1,6 +1,5 @@
 import {
   Directive,
-  ElementRef,
   EventEmitter,
   HostBinding,
   HostListener,
@@ -9,46 +8,79 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[fileDropUpload]',
+  selector: '[fileDrop]',
 })
 export class FileDropUploadDirective {
-  constructor(private el: ElementRef) {
-    this.startColor = el.nativeElement.style.background;
-    this.background = this.startColor;
+  // Directive emits a 'fileDropped' event with the list of files dropped
+  @Output('fileDropped')
+  fileDropped = new EventEmitter<Array<File>>();
+
+  // Prevents dropping on the body of the document,
+  // which stops the browser from loading files if the user misses the drop zone
+  @Input()
+  preventBodyDrop = true;
+
+  // Add 'drop-zone-active' class when the drag is over target
+  @HostBinding('class.drop-zone-active')
+  active = false;
+
+  // Drop event
+  @HostListener('drop', ['$event'])
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.active = false;
+
+    const { dataTransfer } = event;
+    if (!dataTransfer) {
+      return;
+    }
+
+    if (dataTransfer.items) {
+      const files = [];
+      for (let x = 0; x < dataTransfer.items.length; x++) {
+        if (dataTransfer.items[x].kind === 'file') {
+          // Have to use `as File` since getAsFile returns `File | null` for some reason
+          const file = dataTransfer.items[x].getAsFile();
+          if (file !== null) {
+            files.push(file as File);
+          }
+        }
+      }
+
+      // Clear dataTransfer for immutability purposes
+      dataTransfer.items.clear();
+      this.fileDropped.emit(files);
+    } else {
+      const files = dataTransfer.files;
+      dataTransfer.clearData();
+      this.fileDropped.emit(Array.from(files));
+    }
   }
 
-  @Output() fileDropped = new EventEmitter<any>();
-
-  @Input('dragHoverColor')
-  dragColor!: string;
-
-  @HostBinding('style.background-color')
-  private background: string;
-
-  private startColor: string;
-
   @HostListener('dragover', ['$event'])
-  dragOver(event: Event) {
-    event.preventDefault();
+  onDragOver(event: DragEvent) {
     event.stopPropagation();
-    this.background = this.dragColor;
+    event.preventDefault();
+    this.active = true;
   }
 
   @HostListener('dragleave', ['$event'])
-  public dragLeave(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.background = this.startColor;
+  onDragLeave(event: DragEvent) {
+    this.active = false;
   }
 
-  @HostListener('drop', ['$event'])
-  public drop(event: any) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.background = this.startColor;
-    const files = event.target.files;
-    if (files.length > 0) {
-      this.fileDropped.emit(files);
+  @HostListener('body:dragover', ['$event'])
+  onBodyDragOver(event: DragEvent) {
+    if (this.preventBodyDrop) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  @HostListener('body:drop', ['$event'])
+  onBodyDrop(event: DragEvent) {
+    if (this.preventBodyDrop) {
+      event.preventDefault();
     }
   }
 }
